@@ -11,11 +11,26 @@ https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
 from pathlib import Path
+import environ
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 # BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+
+env=environ.Env(DEBUG=(bool,False))
+
+env = environ.Env(DEBUG=(bool, False))
+
+environ.Env.read_env(env_file=".env")
+
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = env("SECRET_KEY")
+
+# SECURITY WARNING: don't run with debug turned on in production!
+DEBUG = env("DEBUG")
+
+ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(" ")
 
 # If the paths are inside the virtual environment folder, adjust this accordingly
 VENV_DIR = os.path.join(BASE_DIR, 'hospitalsenv', 'Lib', 'site-packages', 'osgeo')
@@ -32,13 +47,13 @@ GDAL_LIBRARY_PATH = os.path.join(VENV_DIR, 'gdal.dll')
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'i8t&7h4&dkcbho)qtko4l+#kv$8*2crexwmk0dz-9wz0^%_x!r'
+# # SECURITY WARNING: keep the secret key used in production secret!
+# SECRET_KEY = 'i8t&7h4&dkcbho)qtko4l+#kv$8*2crexwmk0dz-9wz0^%_x!r'
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# # SECURITY WARNING: don't run with debug turned on in production!
+# DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -97,9 +112,13 @@ WSGI_APPLICATION = 'hospitals_api.wsgi.application'
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.contrib.gis.db.backends.postgis",
+        "NAME": env("POSTGRES_DBNAME"),
+        "USER": env("POSTGRES_USER"),
+        "PASSWORD": env("POSTGRES_PASS"),
+        "HOST": env("PG_HOST"),
+        "PORT": env("PG_PORT"),
     }
 }
 

@@ -3,15 +3,19 @@ black==24.8.0
 click==8.1.7
 colorama==0.4.6
 Django==3.1.7
+django-environ==0.11.2
 django-filter==2.4.0
 djangorestframework==3.12.2
 djangorestframework-gis==0.17
 flake8==7.1.1
+GDAL @ file:///D:/hospitals-api/data/GDAL-3.9.2-cp311-cp311-win_amd64.whl#sha256=278f397c0f7d2b1ef07b770a3d39a4433b1040f9d86b13d6daaf146b74402de7
 mccabe==0.7.0
 mypy-extensions==1.0.0
+numpy==2.1.2
 packaging==24.1
 pathspec==0.12.1
 platformdirs==4.3.6
+psycopg2-binary==2.9.10
 pycodestyle==2.12.1
 pyflakes==3.2.0
 pytz==2024.2

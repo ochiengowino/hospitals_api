@@ -1,4 +1,6 @@
-FROM python:3.11-alpine3.19
+#FROM python:3.11-alpine3.19
+FROM python:3.11-slim
+# FROM osgeo/gdal:ubuntu-full-3.9.2
 
 WORKDIR /app
 
@@ -11,11 +13,25 @@ ENV PYTHONUNBUFFERED 1
 
 # RUN apt-get update \ && apt-get -y install netcat gcc postgresql \ && apt-get clean
 RUN apt-get update \
-    && apt-get -y install netcat gcc postgresql \
+    && apt-get -y install netcat-openbsd gcc postgresql \
     && apt-get clean
 
-RUN apt-get update \ 
-    && apt-get install -y binutils libproj-dev gdal-bin python-gdal python3-gdal
+# RUN apt-get update \ 
+#     && apt-get install -y binutils libproj-dev gdal-bin python3-gdal
+# RUN apt-get update \
+#     && apt-get install -y binutils libproj-dev gdal-bin python3-gdal libgdal-dev \
+#     && apt-get clean
+RUN apt-get install -y libgdal-dev build-essential libpq-dev \
+    && apt-get clean
+# RUN apt-get update \
+#     && apt-get install -y software-properties-common \
+#     && add-apt-repository ppa:ubuntugis/ppa \
+#     && apt-get update \
+#     && apt-get install -y gdal-bin libgdal-dev \
+#     && apt-get clean
+
+# ENV CPLUS_INCLUDE_PATH=/usr/include/gdal
+# ENV C_INCLUDE_PATH=/usr/include/gdal
 
 RUN pip install --upgrade pip
 

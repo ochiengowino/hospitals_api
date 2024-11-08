@@ -33,16 +33,16 @@ DEBUG = env("DEBUG")
 ALLOWED_HOSTS = env("ALLOWED_HOSTS").split(" ")
 
 # If the paths are inside the virtual environment folder, adjust this accordingly
-VENV_DIR = os.path.join(BASE_DIR, 'hospitalsenv', 'Lib', 'site-packages', 'osgeo')
+# VENV_DIR = os.path.join(BASE_DIR, 'hospitalsenv', 'Lib', 'site-packages', 'osgeo')
 
 # Set the relative paths
-PROJ_LIB = os.path.join(VENV_DIR, 'data', 'proj', 'proj.db')
-os.environ['GDAL_DATA'] = os.path.join(VENV_DIR, 'data', 'gdal')
-os.environ['PROJ_LIB'] = os.path.join(VENV_DIR, 'data', 'proj')
-os.environ['PATH'] = VENV_DIR + ";" + os.environ['PATH']
+# PROJ_LIB = os.path.join(VENV_DIR, 'data', 'proj', 'proj.db')
+# os.environ['GDAL_DATA'] = os.path.join(VENV_DIR, 'data', 'gdal')
+# os.environ['PROJ_LIB'] = os.path.join(VENV_DIR, 'data', 'proj')
+# os.environ['PATH'] = VENV_DIR + ";" + os.environ['PATH']
 
 # Set GDAL_LIBRARY_PATH
-GDAL_LIBRARY_PATH = os.path.join(VENV_DIR, 'gdal.dll')
+# GDAL_LIBRARY_PATH = os.path.join(VENV_DIR, 'gdal.dll')
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -108,7 +108,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'hospitals_api.wsgi.application'
 
 
-# Database
+# Database 
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
 DATABASES = {

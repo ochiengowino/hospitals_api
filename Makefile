@@ -3,7 +3,8 @@ ifneq (,$(wildcard ./.env))
 	export
 	ENV_FILE_PARAM = --env-file .env
 endif
-
+start:
+	docker-compose exec api python3 manage.py startapp hospitals
 build:
 	docker-compose up --build -d --remove-orphans
 up:
